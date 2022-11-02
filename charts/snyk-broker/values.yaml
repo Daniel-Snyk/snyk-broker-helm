@@ -178,11 +178,19 @@ tlsRejectUnauthorized: ""
 
 ##### Use behind proxy #####
 
-# Do not change unless advised by your Snyk Representative. You probably need to use HTTPS proxy setting and leave this blank. - HTTP Proxy URL 
-httpProxy: ""
+# Do not change unless advised by your Snyk Representative. You probably need to use HTTPS proxy setting and leave this blank. - HTTP Proxy URL
+broker:
+  httpProxy: ""
+
+codeAgent:
+  httpProxy: ""
 
 # HTTPS Proxy URL - This will apply to both Snyk Broker and Snyk Code Agent
-httpsProxy: ""
+broker:
+  httpsProxy: ""
+
+codeAgent:
+  httpsProxy: ""
 
 # Specify a local accept.json file (relative to snyk-broker folder) to inject with a ConfigMap, e.g. "files/accept.json"
 # The accept.json file needs to be modified for use with Snyk Code. 

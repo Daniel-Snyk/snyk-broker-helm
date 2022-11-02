@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snyk-broker-mitm
+  labels:
+    app: snyk-broker-mitm-app
+spec:
+  selector:
+    matchLabels:
+      app: snyk-broker-mitm-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: snyk-broker-mitm-app
+    spec:
+      containers:
+        - image: mitmproxy/mitmproxy
+          imagePullPolicy: Always
+          name: snyk-broker-mitm
+          command: ["mitmdump"]
+          args: ["--modify-headers", "'/WWW-Authenticate/Basic'" ]
+          ports:
+            - containerPort: 8080
+              name: mitm-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snyk-broker-mitm-service
+  labels:
+    app: snyk-broker-mitm-app
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: snyk-broker-mitm-app
+  type: ClusterIP

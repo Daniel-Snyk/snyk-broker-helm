@@ -293,16 +293,16 @@ spec:
               value: "0"
          {{- end }}
 
-         {{- if .Values.httpProxy }}
+         {{- if .Values.broker.httpProxy }}
          # HTTP Proxy Settings
             - name: HTTP_PROXY
-              value: {{ .Values.httpProxy }}
+              value: {{ .Values.broker.httpProxy }}
          {{- end }}
 
-         {{- if .Values.httpsProxy }}
+         {{- if .Values.broker.httpsProxy }}
          # HTTPS Proxy Settings
             - name: HTTPS_PROXY
-              value: {{ .Values.httpsProxy }}
+              value: {{ .Values.broker.httpsProxy }}
          {{- end }}
 
          {{- if (include "snyk-broker.acceptJson" .)}}
