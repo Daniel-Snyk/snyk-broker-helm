@@ -189,6 +189,13 @@ spec:
               value: {{ .Values.deployment.container.containerPort | squote }}
             - name: BROKER_CLIENT_URL
               value: {{ .Values.brokerClientUrl }}
+            - name: GIT_USERNAME
+              value: "PAT"
+            - name: GIT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.scmType}}-token
+                  key: "{{ .Values.scmType}}-token-key"
           {{- end }}
           {{- if eq .Values.scmType "artifactory" }}
           # Artifactory

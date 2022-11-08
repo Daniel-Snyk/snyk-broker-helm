@@ -83,7 +83,6 @@ azureReposHost: ""
 # Azure Repos Token
 azureReposToken: ""
 
-
 ##### Artifactory #####
 
 # Artifactory URL - do not prepend HTTPS
